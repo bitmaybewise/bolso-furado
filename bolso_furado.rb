@@ -1,5 +1,6 @@
-require "pocket-ruby"
 require "date"
+require "pocket-ruby"
+require "dotenv/load"
 
 Pocket.configure do |config|
   config.consumer_key = ENV.fetch("POCKET_CONSUMER_KEY")
