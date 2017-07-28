@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/bolso_furado'
+require_relative '../lib/cli_options'
+
+CliOptions.parse! do |opts|
+  BolsoFurado.new(opts).execute!
+end
