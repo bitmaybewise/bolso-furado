@@ -1,8 +1,11 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/bolso_furado'
-require_relative '../lib/cli_options'
+require './lib/bolso_furado'
+require './lib/cli_options'
 
 CliOptions.parse! do |opts|
-  BolsoFurado.new(opts).execute!
+  result = BolsoFurado.new(opts).execute!
+  puts "#{result.all.size} item(s) untagged"
+  puts "#{result.new_articles.size} recent item(s) untagged"
+  puts "#{result.old_articles.size} item(s) tagged as bolso-furado"
 end
