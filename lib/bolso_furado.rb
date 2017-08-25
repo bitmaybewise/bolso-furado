@@ -1,5 +1,5 @@
 require "date"
-require "./lib/pocket_client"
+require_relative "./pocket_client"
 
 class BolsoFurado
   def initialize(opts)

@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require './lib/bolso_furado'
-require './lib/cli_options'
+require_relative '../lib/bolso_furado'
+require_relative '../lib/cli_options'
 
 CliOptions.parse! do |opts|
   result = BolsoFurado.new(opts).execute!

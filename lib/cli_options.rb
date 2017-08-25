@@ -1,5 +1,5 @@
 require 'optparse'
-require './lib/version'
+require_relative './version'
 
 class CliOptions
   def self.parse!

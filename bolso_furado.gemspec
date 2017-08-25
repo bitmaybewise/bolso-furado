@@ -14,4 +14,6 @@ Gem::Specification.new do |s|
                                                    .map {|f| File.basename(f) }
   s.homepage              = 'http://github.com/hlmerscher/bolso-furado'
   s.license               = 'MIT'
+
+  s.add_dependency('pocket-ruby', "~> 0.0.6")
 end
