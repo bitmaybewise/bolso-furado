@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'pocket-ruby'
+require 'webrick'
+require 'thread'
+require_relative '../lib/version'
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage options:'
+  opts.on('-k', '--key CONSUMER-KEY', 'Consumer key') { |key| options[:key] = key }
+  opts.on('-v', '--version', "Current version") { puts VERSION }
+end.parse!
+
+if options[:key].nil? || options[:key].empty?
+  puts "Consumer key required!"
+  exit
+end
+
+Pocket.configure do |config|
+  config.consumer_key = options[:key]
+end
+
+port = "9999"
+redirect_uri = "http://127.0.0.1:#{port}/"
+
+root = File.expand_path '/tmp'
+server = WEBrick::HTTPServer.new(:Port => port, :DocumentRoot => root)
+trap 'INT' do server.shutdown end
+server.mount_proc '/' do |req, res|
+  res.body = 'Check your token on the console'
+  server.shutdown
+end
+server_thread = Thread.new { server.start }
+
+code = Pocket.get_code(redirect_uri: redirect_uri)
+new_url = Pocket.authorize_url(code: code, redirect_uri: redirect_uri)
+puts 'Authorize bolso-furado-token script using the following url:', new_url
+
+server_thread.join
+server_thread.exit
+
+token = Pocket.get_access_token(code)
+puts 'Your token is', token

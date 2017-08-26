@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.files                 = `git ls-files`.split("\n")
                                           .delete_if { |entry| entry.start_with?(".", "bin") }
   s.executables           = `git ls-files -- bin/*`.split("\n")
-                                                   .map {|f| File.basename(f) }
+                                                   .map { |f| File.basename(f) }
   s.homepage              = 'http://github.com/hlmerscher/bolso-furado'
   s.license               = 'MIT'
 
