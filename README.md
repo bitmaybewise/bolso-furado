@@ -10,7 +10,7 @@ Install the gem:
 
 Create a Pocket application.
 
-Get consumer key and token.
+Get consumer key and token (if you don't have one, use [bolso-furado-token](token-script.md) script).
 
 Run script with consumer key and token:
 
